@@ -4,6 +4,7 @@
 *.duckdb.wal
 *.sqlite
 *.sqlite3
+data/
 
 # dbt
 target/

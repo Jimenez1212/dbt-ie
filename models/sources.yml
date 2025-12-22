@@ -5,9 +5,31 @@ sources:
     database: my_database
     schema: main  # Schema where the raw tables are located
     tables:
+      - name: categories
+        description: "Raw product categories data"
+      - name: customer_addresses
+        description: "Raw customer addresses data"
       - name: customers
         description: "Raw customer data"
+      - name: inventory
+        description: "Raw inventory data"
+      - name: marketing_campaigns
+        description: "Raw marketing campaigns data"
+      - name: order_items
+        description: "Raw order items data"
       - name: orders
         description: "Raw order data"
+      - name: payments
+        description: "Raw payment data"
       - name: products
         description: "Raw product data"
+      - name: returns
+        description: "Raw returns data"
+      - name: reviews
+        description: "Raw product reviews data"
+      - name: shipping
+        description: "Raw shipping data"
+      - name: suppliers
+        description: "Raw suppliers data"
+      - name: website_sessions
+        description: "Raw website sessions data"

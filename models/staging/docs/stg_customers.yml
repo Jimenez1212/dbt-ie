@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Staging model for customer data"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "Customer's first name"
+        tests:
+          - not_null
+      - name: last_name
+        description: "Customer's last name"
+        tests:
+          - not_null
+      - name: email
+        description: "Customer's email address"
+        tests:
+          - unique
+          - not_null
+      - name: phone
+        description: "Customer's phone number"
+      - name: age
+        description: "Customer's age"
+        tests:
+          - not_null
+      - name: gender
+        description: "Customer's gender"
+        tests:
+          - not_null
+      - name: country
+        description: "Customer's country"
+        tests:
+          - not_null
+      - name: state
+        description: "Customer's state (for US customers)"
+      - name: city
+        description: "Customer's city"
+        tests:
+          - not_null
+      - name: registration_date
+        description: "Date when customer registered"
+        tests:
+          - not_null
+      - name: customer_segment
+        description: "Customer segment (Bronze, Silver, Gold, Platinum)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Bronze', 'Silver', 'Gold', 'Platinum']
+      - name: total_orders
+        description: "Total number of orders placed by customer"
+        tests:
+          - not_null
+      - name: total_spent
+        description: "Total amount spent by customer"
+        tests:
+          - not_null
+      - name: is_active
+        description: "Whether the customer account is active"
+        tests:
+          - not_null

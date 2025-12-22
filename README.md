@@ -15,12 +15,21 @@ This repository contains the necessary files and configurations for working with
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+### 1. Fork and Clone the Repository
 
-```bash
-git clone https://github.com/dgarhdez/dbt-ie.git
-cd dbt-ie
-```
+To work on this project and save your changes, you must create your own copy (fork) of the repository.
+
+1.  **Navigate to GitHub**: Go to the repository page at `https://github.com/dgarhdez/dbt-ie`.
+2.  **Fork**: Click the **Fork** button in the top-right corner of the page.
+    *   If prompted, select your personal account as the destination.
+    *   This creates a copy of the code under your own GitHub username (e.g., `https://github.com/YOUR_USERNAME/dbt-ie`).
+3.  **Clone Your Fork**: Clone **your** forked repository to your local machine. Do not clone the original `dgarhdez` repository directly.
+
+    ```bash
+    # Replace YOUR_USERNAME with your actual GitHub username
+    git clone https://github.com/YOUR_USERNAME/dbt-ie.git
+    cd dbt-ie
+    ```
 
 ### 2. Create a Virtual Environment with `uv`
 
@@ -66,7 +75,7 @@ default:
 
 ### 5. Load Data into DuckDB
 
-The `data` folder contains sample CSV files and a Python script to create and populate the DuckDB database.
+The `data` folder contains sample Parquet files and a Python script to create and populate the DuckDB database.
 
 Run the script to create the database:
 
@@ -74,7 +83,7 @@ Run the script to create the database:
 python create_db.py
 ```
 
-This will create `my_database.duckdb` in the project root and load the data from the CSV files into tables: `customers`, `orders`, and `products`.
+This will create `my_database.duckdb` in the project root and load the data from the Parquet files into tables.
 
 ### 6. Run dbt Commands
 

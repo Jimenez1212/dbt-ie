@@ -1,8 +1,19 @@
-{{ config(materialized='view') }}
+{{ config(materialized='table') }}
 
-SELECT
+select
     customer_id,
     first_name,
     last_name,
-    email
-FROM {{ source('raw', 'customers') }}
+    email,
+    phone,
+    age,
+    gender,
+    country,
+    state,
+    city,
+    registration_date,
+    customer_segment,
+    total_orders,
+    total_spent,
+    is_active
+from {{ source('raw', 'customers') }}

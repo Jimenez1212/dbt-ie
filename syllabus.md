@@ -2,241 +2,275 @@
 
 ## Course Overview
 
-This is a comprehensive 15-session course designed to take students from SQL basics to advanced analytics engineering with dbt. The course covers end-to-end data pipeline development, from raw data ingestion to interactive dashboards.
+This is a comprehensive 15-session course designed to take students from SQL basics to advanced analytics engineering with dbt. The course covers end-to-end data pipeline development, from raw data ingestion to interactive dashboards, specifically tailored to cover all domains of the dbt Analytics Engineering Certification.
 
 ## Learning Objectives
 
 - Master dbt fundamentals and project structure
 - Build robust data transformation pipelines
 - Implement testing and documentation best practices
-- Work with modern data stack tools (DuckDB, Evidence)
+- Work with modern data stack tools (DuckDB)
 - Apply analytics engineering principles to real-world scenarios
+- Prepare for the dbt Analytics Engineering Certification
 
 ---
 
-## Session 1: Intro to Analytics Engineering & dbt
+## Session 1: Intro to Analytics Engineering, Setup & Project Structure
 
 ### Learning Objectives
 
-- Role of Analytics Engineering in the modern data stack
-- dbt overview (Core vs Cloud)
-- Certification domains overview
-
----
-
-## Session 2: Applied Practice: Getting Started with dbt
-
-### Learning Objectives
-
-- Setting up dbt development environment
-- Connecting to databases and running models
-- Understanding dbt project workflow
+- What is Analytics Engineering?
+- Introduction to DuckDB: What it is and why we use it (Serverless OLAP)
+- Git Workflow: How to fork and manage the course repository
+- Setting up the development environment
+- Defining configurations in `dbt_project.yml`
+- Project folder structure (models, seeds, tests, analyses, macros)
+- Understanding the compilation process
 
 ### Activities
 
-- Fork starter repo and set up environment
-- Connect dbt Cloud/DuckDB
-- Run first models
-- Explore generated docs & lineage graph
+- Fork the course repository and clone to local machine
+- Install dependencies and configure the dbt profile
+- Connect to the DuckDB database
+- Run the first `dbt run` to validate the setup
+- Explore the dbt project configuration
+- Configure model materializations at directory and file levels
+- Inspect `target/compiled` and `target/run`
 
 ---
 
-## Session 3: SQL & Data Modeling Refresher
+## Session 2: VSCode dbt Power User & Staging Models
 
 ### Learning Objectives
 
-- Advanced SQL techniques for data transformation
-- Data modeling concepts and principles
+- Introduction to VSCode dbt Power User extension
+- Key Features: Autocomplete, Navigation, Lineage, Query Preview
+- Exploring Staging Models
 
 ### Activities
 
-- Practice CTEs, window functions, surrogate keys
-- Learn facts & dimensions, star schema modeling
+- Install and configure the VSCode dbt Power User extension
+- Navigate the project using "Go to Definition"
+- Visualize the lineage of our staging models
+- Run `stg_customers` and `stg_orders` interactively to inspect the data
 
 ---
 
-## Session 4: Applied Practice: Modeling with SQL
+## Session 3: Sources, Seeds & Dependencies
 
 ### Learning Objectives
 
-- Practical SQL transformation techniques
-- Building data models with joins and aggregations
+- Configuring sources in dbt
+- Identifying and verifying raw object dependencies
+- Working with Seeds (`dbt seed`)
+- Implementing source freshness
 
 ### Activities
 
-- Transform raw orders + customers with SQL
-- Build first joins & aggregations
-- Validate results in DuckDB
+- Define sources in `sources.yml`
+- Load static data with seeds
+- Run `dbt source freshness` and debug failures
 
 ---
 
-## Session 5: dbt Project Structure, Documentation & Lineage
+## Session 4: Materializations & Grants
 
 ### Learning Objectives
 
-- Explore dbt_project.yml, models, macros folder structure
-- Learn staging, intermediate, marts organization
-- Understand target/ folder contents (compiled SQL, executed SQL, manifest, run results)
-- Create documentation in `schema.yml` and understanding lineage graph
-
----
-
-## Session 6: Sources & Seeds
-
-### Learning Objectives
-
-- Managing data sources in dbt
-- Working with static/reference data
+- Understanding core dbt materializations (view, table, ephemeral)
+- Providing access to users with the `grants` config
+- Trade-offs between materialization types
 
 ### Activities
 
-- Define sources in dbt
-- Create and use seeds for static data
+- Configure different materializations for models
+- Implement grants for specific roles
+- Analyze build logs for different materializations
 
 ---
 
-## Session 7: Applied Practice: Full Pipeline Build
+## Session 5: Modeling I: Dimensional Modeling & Project Structure
 
 ### Learning Objectives
 
-- End-to-end pipeline development
-- dbt project organization and execution
+- Understanding Dimensional Modeling (Star Schema: Facts & Dimensions)
+- The dbt Layered Architecture: Staging, Intermediate, Marts
+- Conceptualizing modularity and incorporating DRY principles
+- Refactoring legacy SQL into structured dbt models
 
 ### Activities
 
-- Start from a raw table (source + seed)
-- Build staging models (naming conventions, ref())
-- Create intermediate transformations (joins, enrichments)
-- Build a mart/fact table (business-ready KPIs)
-- Run the full pipeline end-to-end
+- Design a Star Schema for the ecommerce dataset
+- Build Intermediate models to join Staging models
+- Create Final Marts (Fact Orders, Dim Customers)
+- Visualize the clean lineage from Source to Mart
 
 ---
 
-## Session 8: Jinja & Macros
+## Session 6: Modeling II: DAGs & Python Models
 
 ### Learning Objectives
 
-- Jinja templating for dynamic SQL
-- Creating reusable code components
+- Creating a logical flow of models and building clean DAGs
+- Creating Python Models in dbt
+- Handling complex dependencies
 
 ### Activities
 
-- Learn Jinja templating basics
-- Create reusable macros & variables
-- Work with packages (dbt-utils)
+- Visualize the DAG
+- Create a dbt Python model for non-SQL transformations
+- Refactor a messy DAG into a clean lineage
 
 ---
 
-## Session 9: Applied Practice: Macros & Reuse
+## Session 7: Jinja, Macros & Packages
 
 ### Learning Objectives
 
-- Advanced macro development and code reuse
-- Package management in dbt
+- Using dbt Packages (dbt-utils, codegen)
+- Jinja templating fundamentals
+- Creating reusable Macros
 
 ### Activities
 
-- Build a macro for surrogate keys
-- Refactor repetitive SQL into macros
-- Add packages, use dbt clean, dbt deps
+- Install `dbt-utils` package
+- Create a custom macro
+- Use package macros for surrogate keys and date spines
 
 ---
 
-## Session 10: Testing in dbt + Core Commands
+## Session 8: Testing in dbt
 
 ### Learning Objectives
 
-- Data quality testing strategies
-- Understanding dbt execution commands
+- Implementing dbt tests (generic, singular)
+- Testing assumptions for dbt models and sources
+- Implementing various testing steps in the workflow
+- Custom generic tests
 
 ### Activities
 
-- Learn built-in tests (unique, not null, accepted values)
-- Create custom schema & data tests
-- Understand core commands:
-  - dbt run → executes models only
-  - dbt test → executes tests only
-  - dbt build → runs models + tests + snapshots + seeds in correct order
-- Learn when to use each command in practice
+- Apply generic tests (unique, not_null)
+- Write singular SQL tests
+- Create a custom generic test
 
 ---
 
-## Session 11: Applied Practice: Testing
+## Session 9: Documentation, Lineage & Exposures
 
 ### Learning Objectives
 
-- Implementing comprehensive testing strategies
-- Debugging and resolving test failures
+- Creating and maintaining dbt documentation
+- Implementing source, table, and column descriptions
+- Using macros to show lineage
+- Implementing dbt exposures
 
 ### Activities
 
-- Add schema tests to staging + marts
-- Write a custom test for a business rule
-- Debug failing tests
+- Document models in YAML
+- Generate docs site (`dbt docs generate`)
+- Define an exposure for a dashboard
 
 ---
 
-## Session 12: Incremental Models & Snapshots
+## Session 10: Model Governance: Contracts & Versions
 
 ### Learning Objectives
 
-- Performance optimization techniques
-- Handling changing data over time
+- Understanding dbt models governance
+- Adding contracts to models to ensure shape
+- Creating different versions of models and deprecating old ones
+- Configuring Model Access (Public/Private/Protected)
 
 ### Activities
 
-- Learn why incremental models matter (performance, scalability)
-- Study strategies: timestamp column, unique keys, partitions
-- Understand common pitfalls: late-arriving data, schema changes
-- Learn snapshots: when to use them vs incrementals
-- Build an incremental model + a snapshot table
+- Add a contract to a model
+- Version a model and define a deprecation date
+- Restrict access to a model
 
 ---
 
-## Session 13: Evidence Dashboards
+## Session 11: Advanced Materializations: Incremental & Snapshots
 
 ### Learning Objectives
 
-- Dashboard creation and data visualization
-- Connecting analytics to business users
+- Deep dive into Incremental models
+- Leveraging Snapshots for SCD Type 2
+- Configuring incremental strategies
 
 ### Activities
 
-- Install & set up Evidence
-- Connect Evidence to DuckDB
-- Learn Evidence project structure
-- Build reports
+- Convert a large table model to incremental
+- Create a snapshot for a mutable source
+- Test incremental logic
 
 ---
 
-## Session 14: Group Assignment Work in Class (Part 1)
+## Session 12: Debugging & Troubleshooting
 
 ### Learning Objectives
 
-- Collaborative development and project management
-- Applying learned concepts in team settings
+- Debugging data modeling errors
+- Understanding logged error messages
+- Troubleshooting using compiled code
+- Troubleshooting `.yml` compilation errors
+- Distinguishing between dbt core and platform errors
 
 ### Activities
 
-- Students work on group projects with instructor support
-- Incorporate staging, marts, macros, tests, docs, incrementals, snapshots, dashboards
-- Practice debugging and peer review in class
+- Debug intentional errors in SQL and YAML
+- Analyze `dbt.log`
+- Fix a broken model using compiled SQL
 
 ---
 
-## Session 15: Group Assignment Work in Class (Part 2)
+## Session 13: State & Pipeline Management
 
 ### Learning Objectives
 
-- Collaborative development and project management
-- Applying learned concepts in team settings
+- Leveraging the dbt state (state, retry, selectors)
+- Managing data pipelines
+- Using `dbt clone`
+- Troubleshooting and managing failure points in the DAG
 
 ### Activities
 
-- Students work on group projects with instructor support
-- Incorporate staging, marts, macros, tests, docs, incrementals, snapshots, dashboards
-- Practice debugging and peer review in class
-- Receive instructor feedback + course wrap-up
+- Run dbt with `--state` and `state:modified`
+- Use `dbt retry` after a failure
+- Clone a project subset
+
+---
+
+## Session 14: Deployment & CI/CD
+
+### Learning Objectives
+
+- Deployment environments (Dev vs Prod)
+- Troubleshooting errors from integrated tools
+- CI/CD workflows for dbt
+- Job scheduling
+
+### Activities
+
+- Simulate a CI/CD pipeline run
+- Configure a deployment job
+- Discuss production failure scenarios
+
+---
+
+## Session 15: Certification Review & Best Practices
+
+### Learning Objectives
+
+- Comprehensive review of all certification domains
+- Developing and implementing a fix and testing it prior to merging
+- Final Q&A and Exam Strategy
+
+### Activities
+
+- Mock exam questions
+- Review key concepts: Materializations, Tests, Governance, State
+- Final project walkthrough
 
 ---
 
@@ -251,13 +285,11 @@ This is a comprehensive 15-session course designed to take students from SQL bas
 
 - dbt Core/Cloud - Data transformation tool
 - DuckDB - Analytical database
-- Evidence - Dashboard framework
 - Git/GitHub - Version control
 - VS Code - Development environment
 
 ## Assessment Methods
 
 - Hands-on coding exercises
-- Group project development
 - Code reviews and feedback
 - Practical implementation validation
