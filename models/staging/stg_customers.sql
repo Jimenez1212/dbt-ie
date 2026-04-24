@@ -3,5 +3,6 @@ select
     first_name,
     last_name,
     email,
-    country
+    country,
+    customer_segment
 from{{source('raw', 'customers')}}
